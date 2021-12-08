@@ -1,4 +1,4 @@
-package com.tedu.entities;
+package com.tedu.cloud.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
