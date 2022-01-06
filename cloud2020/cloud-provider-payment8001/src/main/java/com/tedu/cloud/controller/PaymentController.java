@@ -66,7 +66,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("discovery")
+    @GetMapping("/discovery")
     public Object discovery(){
         List<String> list = discoveryClient.getServices();
         for (String s : list) {
@@ -79,5 +79,16 @@ public class PaymentController {
             logger.info(info);
         }
         return discoveryClient;
+    }
+    /**
+     * @Author        FJM
+     * @Date         2022/1/6 16:31
+     * @Description  测试手写轮询
+     * @Param        []
+     * @Return       java.lang.String
+     */
+    @GetMapping("/testMyRoundRobin")
+    public String testMyRoundRobin(){
+        return serverPort;
     }
 }

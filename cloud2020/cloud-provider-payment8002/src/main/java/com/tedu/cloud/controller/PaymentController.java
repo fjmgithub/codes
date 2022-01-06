@@ -56,14 +56,14 @@ public class PaymentController {
         }
     }
     /**
-     * @Author       FJM
-     * @Date         2021/9/27 11:42
-     * @Description  负载均衡策略测试
-     * @Param  
-     * @Return 
+     * @Author        FJM
+     * @Date         2022/1/6 16:31
+     * @Description  测试手写轮询
+     * @Param        []
+     * @Return       java.lang.String
      */
-    @GetMapping(value = "/roundRobinTest")
-    public String roundRobinTest() {
-        return serverPort;//返回服务接口
+    @GetMapping("/testMyRoundRobin")
+    public String testMyRoundRobin(){
+        return serverPort;
     }
 }
