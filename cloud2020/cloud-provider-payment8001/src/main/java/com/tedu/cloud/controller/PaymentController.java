@@ -3,10 +3,15 @@ package com.tedu.cloud.controller;
 import com.tedu.cloud.entities.CommonResult;
 import com.tedu.cloud.entities.Payment;
 import com.tedu.cloud.service.PaymentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author: FJM
@@ -16,11 +21,22 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping(value = "/provider")
 public class PaymentController {
+    private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
     @Value("${server.port}")
     private String serverPort;
+
     @Resource
     private PaymentService paymentService;
 
+    @Resource
+    private DiscoveryClient discoveryClient;
+    /**
+     * @Author        FJM
+     * @Date         2022/1/6 9:50
+     * @Description  新增支付信息
+     * @Param        [payment]
+     * @Return       com.tedu.cloud.entities.CommonResult<com.tedu.cloud.entities.Payment>
+     */
     @PostMapping(value = "/addPayment")
     public CommonResult<Payment> addPayment(@RequestBody Payment payment) {
         try {
@@ -30,7 +46,13 @@ public class PaymentController {
             return new CommonResult<>(400,"插入数据库失败！端口："+serverPort);
         }
     }
-
+    /**
+     * @Author        FJM
+     * @Date         2022/1/6 9:49
+     * @Description  获取支付信息
+     * @Param        [id]
+     * @Return       com.tedu.cloud.entities.CommonResult<com.tedu.cloud.entities.Payment>
+     */
     @GetMapping(value = "/getPayment/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id") Long id){
         try {
@@ -42,5 +64,20 @@ public class PaymentController {
         } catch (Exception e) {
             return new CommonResult<>(400,"获取支付信息失败！端口："+serverPort);
         }
+    }
+
+    @GetMapping("discovery")
+    public Object discovery(){
+        List<String> list = discoveryClient.getServices();
+        for (String s : list) {
+            String info = "serviceName = " + s;
+            logger.info(info);
+        }
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance instance : instances) {
+            String info = "host = " + instance.getHost()+", port = " + instance.getPort()+", uri = " + instance.getUri();
+            logger.info(info);
+        }
+        return discoveryClient;
     }
 }
