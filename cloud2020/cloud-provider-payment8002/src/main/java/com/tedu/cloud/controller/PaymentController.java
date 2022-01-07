@@ -66,4 +66,22 @@ public class PaymentController {
     public String testMyRoundRobin(){
         return serverPort;
     }
+
+    /**
+     * @Author        FJM
+     * @Date         2022/1/7 16:36
+     * @Description  feign超时
+     * @Param        []
+     * @Return       java.lang.String
+     */
+    @GetMapping("/feignTimeout")
+    public String feignTimeout(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        }
+        return serverPort;
+    }
 }
