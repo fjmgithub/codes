@@ -8,12 +8,17 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/fjmgithub/spring-cloud-config.git #GitHub上面的git仓库名字
+#          uri: https://github.com/fjmgithub/spring-cloud-config.git #GitHub上面的git仓库名字
+          uri: git@github.com:fjmgithub/spring-cloud-config.git #GitHub上面的git仓库名字
           ####搜索目录
-          search-paths:
-            - spring-cloud-config
+#          search-paths:
+#            - spring-cloud-config
+          skip-ssl-validation: true
+          username: fjmgithub
+          password: fjm@github.com1
+          force-pull: true
       ####读取分支
-      label: master
+      label: main
 
 #服务注册到eureka地址
 eureka:
