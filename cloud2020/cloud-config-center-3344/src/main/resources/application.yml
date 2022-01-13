@@ -8,12 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:fjmgithub/codes.git #GitHub上面的git仓库名字
-          ####搜索目录
-          search-paths:
-            - cloud2020_config
-      ####读取分支
-      label: main
+          uri: https://github.com/fjmgithub/codes   #配置到GitHub仓库名称
+          search-paths: cloud2020_config           #仓库下的目录
+          username: fjmgithub        #用户名
+          password: fjm@github.com1  #密码
+          default-label: main        #分支
 
 #服务注册到eureka地址
 eureka:
