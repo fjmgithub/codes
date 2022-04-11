@@ -4,7 +4,7 @@
 <mapper namespace="com.tedu.cloud.mapper.PaymentMapper">
 
     <insert id="addPayment" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
-        insert into payment(serial)  values(#{serial});
+        INSERT INTO payment(serial)  VALUES (#{serial});
     </insert>
 
     <select id="getPayment" resultType="com.tedu.cloud.entities.Payment">
