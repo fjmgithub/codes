@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author: FJM
@@ -108,4 +110,63 @@ public class PaymentController {
         }
         return serverPort;
     }
+
+    /**
+     * 构建树结构
+     * @param nodes
+     * @return
+     */
+    private List<SalaryNodeTreeVo> buildTree(List<SalaryNodeTreeVo> nodes) {
+        Map<Integer, List<SalaryNodeTreeVo>> children = nodes.stream().filter(node -> node.getParentId() != 0)
+                .collect(Collectors.groupingBy(node -> node.getParentId()));
+        nodes.forEach(node -> node.setChildren(children.get(node.getNodeId())));
+        return nodes.stream().filter(node -> node.getParentId() == 0).collect(Collectors.toList());
+    }
+
 }
+ class SalaryNodeTreeVo {
+
+    /*结点父类id*/
+    private Integer parentId;
+
+    /*结点名称*/
+    private String nodeName;
+
+    /*当前节点id*/
+    private Integer nodeId;
+
+    /*孩子结点list*/
+    private List<SalaryNodeTreeVo> children;
+
+     public Integer getParentId() {
+         return parentId;
+     }
+
+     public void setParentId(Integer parentId) {
+         this.parentId = parentId;
+     }
+
+     public String getNodeName() {
+         return nodeName;
+     }
+
+     public void setNodeName(String nodeName) {
+         this.nodeName = nodeName;
+     }
+
+     public Integer getNodeId() {
+         return nodeId;
+     }
+
+     public void setNodeId(Integer nodeId) {
+         this.nodeId = nodeId;
+     }
+
+     public List<SalaryNodeTreeVo> getChildren() {
+         return children;
+     }
+
+     public void setChildren(List<SalaryNodeTreeVo> children) {
+         this.children = children;
+     }
+ }
