@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * @Author: FJM
+ * @Author FJM
  * @Date 2021年12月09日 16:06
- * @Description: 支付
+ * @Description 支付
  */
 @RestController
 @RequestMapping("/provider")

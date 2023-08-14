@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableBinding(Sink.class)
-public class ReceiveMessageListenerController
-{
+public class ReceiveMessageListenerController {
     @Value("${server.port}")
     private String serverPort;
 

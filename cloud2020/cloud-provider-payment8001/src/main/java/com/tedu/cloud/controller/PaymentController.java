@@ -32,6 +32,12 @@ public class PaymentController {
 
     @Resource
     private DiscoveryClient discoveryClient;
+
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin() {
+        return "hi ,i'am paymentZipkin server fall back，welcome to here, O(∩_∩)O哈哈~";
+    }
+
     /**
      * @Author        FJM
      * @Date         2022/1/6 9:50

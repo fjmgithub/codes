@@ -6,7 +6,7 @@
     <insert id="addPayment" parameterType="com.tedu.cloud.entities.Payment" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO payment(serial) VALUES (#{serial});
     </insert>
-
+    <!-- 注释 -->
     <select id="getPayment"  resultType="com.tedu.cloud.entities.Payment">
         SELECT id,serial
         FROM payment
