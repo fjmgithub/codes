@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: FJM
+ * @Author FJM
  * @Date 2022年01月10日 9:52
- * @Description: hystrix业务类
+ * @Description hystrix业务类
  */
 @Service
 public class PaymentService {

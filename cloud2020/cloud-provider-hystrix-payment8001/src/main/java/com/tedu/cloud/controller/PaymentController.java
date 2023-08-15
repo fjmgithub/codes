@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * @Author: FJM
+ * @Author FJM
  * @Date 2022年01月10日 10:12
- * @Description: hystrix
+ * @Description hystrix
  */
 @RestController
 @RequestMapping("/hystrix")
