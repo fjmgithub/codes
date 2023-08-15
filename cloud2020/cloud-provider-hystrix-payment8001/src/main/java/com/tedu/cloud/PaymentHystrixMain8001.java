@@ -9,9 +9,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 /**
- * @Author: FJM
+ * @Author FJM
  * @Date 2022年01月10日 9:49
- * @Description: 启动类
+ * @Description 启动类
  */
 @SpringBootApplication
 @EnableEurekaClient
@@ -27,9 +27,8 @@ public class PaymentHystrixMain8001 {
      *否则，Unable to connect to Command Metric Stream 404
      */
     @Bean
-    public ServletRegistrationBean getServlet() {
-        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    public ServletRegistrationBean<HystrixMetricsStreamServlet> getServlet() {
+        ServletRegistrationBean<HystrixMetricsStreamServlet> registrationBean = new ServletRegistrationBean<>(new HystrixMetricsStreamServlet());
         registrationBean.setLoadOnStartup(1);
         registrationBean.addUrlMappings("/hystrix.stream");
         registrationBean.setName("HystrixMetricsStreamServlet");
